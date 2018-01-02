@@ -1,0 +1,9 @@
+{
+    "jsonnet.libPaths": [
+        "/istio/jsonnet/ksonnet-lib/ksonnet.beta.3",
+        "/istio/guestbook/vendor"
+    ],
+    //"jsonnet.extStrs": {
+    //    "__ksonnet/params": "test",
+    //},
+}

@@ -1,0 +1,18 @@
+apiVersion: 0.0.1
+kind: ksonnet.io/app
+libraries:
+  redis:
+    gitVersion:
+      commitSha: ea3408d44c2d8ea4d321364e5533d5c60e74bce0
+      refSpec: master
+    name: redis
+    registry: incubator
+name: guestbook
+registries:
+  incubator:
+    gitVersion:
+      commitSha: ea3408d44c2d8ea4d321364e5533d5c60e74bce0
+      refSpec: master
+    protocol: github
+    uri: github.com/ksonnet/parts/tree/master/incubator
+version: 0.0.1
