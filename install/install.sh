@@ -10,15 +10,12 @@ then
     source ./../.secrets
 fi
 
-CONTEXT=${1:-default}
-ISTIO_DIR=${2:-/home/fedora/opt/bin/istio-0.4.0}
+CONTEXT=${1:-kubernetes-admin@kubernetes}
+ISTIO_DIR=${2:-/home/fedora/opt/istio/istio-0.4.0}
 
 echo "Installing istio from $ISTIO_DIR using context $CONTEXT"
 
 # Istio
-
-kubectl --context $CONTEXT create namespace istio-system
-#kubectl --context $CONTEXT create namespace helloworld
 
 #kubectl --context $CONTEXT apply -f custom/imagepullsecret.yaml.secret
 #kubectl --context $CONTEXT apply -f custom/istio-system-istio-psp.yaml
@@ -26,7 +23,7 @@ kubectl --context $CONTEXT create namespace istio-system
 
 #./../certs/istio/deploySecret.sh
 
-kubectl --context $CONTEXT apply -f $ISTIO_DIR/install/kubernetes/istio-auth.yaml.secret
+kubectl --context $CONTEXT apply -f $ISTIO_DIR/install/kubernetes/istio-auth.yaml
 
 # Initializer: modified apiserver config:
 # --runtime-config    Add: admissionregistration.k8s.io/v1alpha1
@@ -41,6 +38,7 @@ kubectl --context $CONTEXT apply -f $ISTIO_DIR/install/kubernetes/addons/zipkin.
 
 # Helloworld Sample
 #NAMESPACE=helloworld
+#kubectl --context $CONTEXT create namespace helloworld
 #kubectl --context $CONTEXT --namespace $NAMESPACE apply -f custom/helloworld-networkpolicies.yaml
 #kubectl --context $CONTEXT apply -f custom/helloworld-istio-psp.yaml
 #kubectl --context $CONTEXT --namespace $NAMESPACE apply -f samples/helloworld/helloworld.yaml
