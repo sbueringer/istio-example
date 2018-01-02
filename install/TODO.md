@@ -1,0 +1,2 @@
+
+* enable initializer in Kubernetes
