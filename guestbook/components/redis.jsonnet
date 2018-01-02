@@ -1,5 +1,4 @@
-local params = (import "params.libsonnet").components["guestbook-ui"];
-#local params = std.extVar("__ksonnet/params").components.demo;
+local params = std.extVar("__ksonnet/params").components["redis"];
 local k = import 'k.libsonnet';
 local redis = import 'incubator/redis/redis.libsonnet';
 

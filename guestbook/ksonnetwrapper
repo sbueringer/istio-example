@@ -1,0 +1,6 @@
+#!/bin/bash
+JSONNET=$(which jsonnet)
+FOLDER="/istio/guestbook"
+COMPONENTS="'__ksonnet/params'=$FOLDER/components/params.libsonnet"
+
+bash -c "$JSONNET --ext-code-file $COMPONENTS -J $FOLDER/ksonnet-lib/ksonnet.beta.3 -J $FOLDER/vendor $@"

@@ -1,5 +1,4 @@
-local params = (import "params.libsonnet").components["guestbook-ui"];
-local params = std.extVar("__ksonnet/params").components.demo;
+local params = std.extVar("__ksonnet/params").components["guestbook-ui"];
 local k = import "k.libsonnet";
 local deployment = k.apps.v1beta1.deployment;
 local container = k.apps.v1beta1.deployment.mixin.spec.template.spec.containersType;
@@ -9,7 +8,6 @@ local servicePort = k.core.v1.service.mixin.spec.portsType;
 
 local targetPort = params.containerPort;
 local labels = {app: params.name};
-local test = "sdf";
 
 local appService = service
   .new(
