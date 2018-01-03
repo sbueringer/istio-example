@@ -1,0 +1,20 @@
+- hosts: all
+  connection: local
+  run_once: true
+  vars:
+    istioversion: "0.4.0"
+  tasks:
+  - name: Create brigade folder
+    file:
+      path: ~/opt/brigade
+      state: directory
+  - name: Checkout brigade
+    git:
+      repo: https://github.com/Azure/brigade.git
+      dest: ~/opt/brigade/brigade
+      force: yes
+  - name: Checkout kashti
+    git:
+      repo: https://github.com/Azure/kashti.git
+      dest: ~/opt/brigade/kashti
+      force: yes
