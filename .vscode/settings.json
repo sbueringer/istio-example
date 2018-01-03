@@ -1,3 +1,4 @@
 {
+    "go.gopath": "/istio/gopath",
     "jsonnet.executablePath": "/istio/guestbook/ksonnetwrapper",
 }
