@@ -1,0 +1,14 @@
+- hosts: all
+  connection: local
+  run_once: true
+  become: true
+  vars:
+    squashversion: "0.2.0"
+  tasks:
+  - name: Install Telepresence Repo
+    shell: |
+      curl -s https://packagecloud.io/install/repositories/datawireio/telepresence/script.rpm.sh | sudo bash
+  - name: Install Telepresence
+    dnf:
+      name: telepresence
+      state: present
