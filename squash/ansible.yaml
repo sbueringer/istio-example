@@ -1,0 +1,13 @@
+- hosts: all
+  connection: local
+  run_once: true
+  become: true
+  vars:
+    squashversion: "0.2.0"
+  tasks:
+  - name: Install Squash
+    get_url:
+      url: https://github.com/solo-io/squash/releases/download/v{{ squashversion }}/squash-linux
+      dest: /usr/local/bin/squash
+      owner: fedora
+      mode: 0740

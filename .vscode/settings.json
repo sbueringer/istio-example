@@ -1,4 +1,5 @@
 {
     "go.gopath": "/istio/gopath",
     "jsonnet.executablePath": "/istio/guestbook/ksonnetwrapper",
+    "vs-squash.squash-server-url": "http://localhost:8001/api/v1/namespaces/squash/services/squash-server:http-squash-api/proxy/api/v2"
 }
