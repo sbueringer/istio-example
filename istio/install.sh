@@ -22,6 +22,7 @@ echo "Installing istio from $ISTIO_DIR using context $CONTEXT"
 #kubectl --context $CONTEXT apply -f custom/istio-system-networkpolicies.yaml
 
 #./../certs/istio/deploySecret.sh
+~/code/detss/drhub/istio/certs/istio/deploySecret.sh $CONTEXT
 
 kubectl --context $CONTEXT apply -f $ISTIO_DIR/install/kubernetes/istio-auth.yaml
 
@@ -37,8 +38,9 @@ kubectl --context $CONTEXT apply -f $ISTIO_DIR/install/kubernetes/addons/service
 kubectl --context $CONTEXT apply -f $ISTIO_DIR/install/kubernetes/addons/zipkin.yaml
 
 # Helloworld Sample
-#NAMESPACE=helloworld
-#kubectl --context $CONTEXT create namespace helloworld
+NAMESPACE=helloworld
+kubectl --context $CONTEXT create namespace helloworld
+kubectl --context $CONTEXT --namespace $NAMESPACE apply -f $ISTIO_DIR/samples/helloworld/helloworld.yaml
 #kubectl --context $CONTEXT --namespace $NAMESPACE apply -f custom/helloworld-networkpolicies.yaml
 #kubectl --context $CONTEXT apply -f custom/helloworld-istio-psp.yaml
 #kubectl --context $CONTEXT --namespace $NAMESPACE apply -f samples/helloworld/helloworld.yaml

@@ -17,6 +17,13 @@ while [ $(kubectl --context $CONTEXT get ns | grep "istio-system" | wc -l) -gt 0
 done
 echo "Namespaces are deleted"
 
+echo "Waiting till namespaces are deleted"
+while [ $(kubectl --context $CONTEXT get ns | grep "helloworld" | wc -l) -gt 0 ]; do
+    echo -n "."
+    sleep 5
+done
+echo "Namespaces are deleted"
+
 kubectl --context $CONTEXT get clusterroles | grep istio | awk '{print "kubectl --context '$CONTEXT' delete clusterroles "$1}' | sh
 kubectl --context $CONTEXT get clusterrolebindings | grep istio | awk '{print "kubectl --context '$CONTEXT' delete clusterrolebindings "$1}' | sh
 kubectl --context $CONTEXT get psp | grep istio | awk '{print "kubectl --context '$CONTEXT' delete psp "$1}' | sh
