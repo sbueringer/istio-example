@@ -8,6 +8,9 @@ ISTIO_DIR=${2:-/home/fedora/opt/istio/istio-0.4.0}
 
 echo "Remove istio from $ISTIO_DIR using context $CONTEXT"
 
+kubectl --context $CONTEXT delete -f $ISTIO_DIR/install/kubernetes/istio-auth.yaml
+kubectl --context $CONTEXT delete -f $ISTIO_DIR/install/kubernetes/istio-initializer.yaml
+
 kubectl --context $CONTEXT delete namespace istio-system
 
 echo "Waiting till namespaces are deleted"

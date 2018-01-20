@@ -17,18 +17,7 @@ echo "Installing istio from $ISTIO_DIR using context $CONTEXT"
 
 # Istio
 
-#kubectl --context $CONTEXT apply -f custom/imagepullsecret.yaml.secret
-#kubectl --context $CONTEXT apply -f custom/istio-system-istio-psp.yaml
-#kubectl --context $CONTEXT apply -f custom/istio-system-networkpolicies.yaml
-
-#./../certs/istio/deploySecret.sh
-
 kubectl --context $CONTEXT apply -f $ISTIO_DIR/install/kubernetes/istio-auth.yaml
-
-# Initializer: modified apiserver config:
-# --runtime-config    Add: admissionregistration.k8s.io/v1alpha1
-# --admission-control Add: Initializers
-# Restart ApiServer systemctl restart kube-apiserver
 kubectl --context $CONTEXT apply -f $ISTIO_DIR/install/kubernetes/istio-initializer.yaml
 
 kubectl --context $CONTEXT apply -f $ISTIO_DIR/install/kubernetes/addons/grafana.yaml
@@ -37,8 +26,7 @@ kubectl --context $CONTEXT apply -f $ISTIO_DIR/install/kubernetes/addons/service
 kubectl --context $CONTEXT apply -f $ISTIO_DIR/install/kubernetes/addons/zipkin.yaml
 
 # Helloworld Sample
-#NAMESPACE=helloworld
-#kubectl --context $CONTEXT create namespace helloworld
-#kubectl --context $CONTEXT --namespace $NAMESPACE apply -f custom/helloworld-networkpolicies.yaml
-#kubectl --context $CONTEXT apply -f custom/helloworld-istio-psp.yaml
-#kubectl --context $CONTEXT --namespace $NAMESPACE apply -f samples/helloworld/helloworld.yaml
+NAMESPACE=helloworld
+kubectl --context $CONTEXT create namespace $NAMESPACE
+kubectl --context $CONTEXT --namespace $NAMESPACE apply -f custom/helloworld-networkpolicies.yaml
+
