@@ -12,6 +12,8 @@ kubectl --context $CONTEXT delete -f $ISTIO_DIR/install/kubernetes/istio-auth.ya
 kubectl --context $CONTEXT delete -f $ISTIO_DIR/install/kubernetes/istio-initializer.yaml
 
 kubectl --context $CONTEXT delete namespace istio-system
+kubectl --context $CONTEXT delete namespace helloworld
+kubectl --context $CONTEXT delete namespace bookinfo
 
 echo "Waiting till namespaces are deleted"
 while [ $(kubectl --context $CONTEXT get ns | grep "istio-system" | wc -l) -gt 0 ]; do
@@ -22,6 +24,13 @@ echo "Namespaces are deleted"
 
 echo "Waiting till namespaces are deleted"
 while [ $(kubectl --context $CONTEXT get ns | grep "helloworld" | wc -l) -gt 0 ]; do
+    echo -n "."
+    sleep 5
+done
+echo "Namespaces are deleted"
+
+echo "Waiting till namespaces are deleted"
+while [ $(kubectl --context $CONTEXT get ns | grep "bookinfo" | wc -l) -gt 0 ]; do
     echo -n "."
     sleep 5
 done

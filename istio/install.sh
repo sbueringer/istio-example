@@ -29,5 +29,25 @@ kubectl --context $CONTEXT apply -f $ISTIO_DIR/install/kubernetes/addons/zipkin.
 
 # Helloworld Sample
 NAMESPACE=helloworld
-kubectl --context $CONTEXT create namespace helloworld
+kubectl --context $CONTEXT create namespace $NAMESPACE
 kubectl --context $CONTEXT --namespace $NAMESPACE apply -f $ISTIO_DIR/samples/helloworld/helloworld.yaml
+
+# BookInfo Sample
+NAMESPACE=bookinfo
+kubectl --context $CONTEXT create namespace $NAMESPACE
+kubectl --context $CONTEXT --namespace $NAMESPACE apply -f $ISTIO_DIR/samples/bookinfo/kube/bookinfo.yaml
+
+kubectl --context $CONTEXT get svc,po
+GATEWAY_URL=ingress.istio.io
+curl -o /dev/null -s -w "%{http_code}\n" http://${GATEWAY_URL}/productpage
+
+
+#TODO: https://istio.io/docs/guides/intelligent-routing.html
+#TODO: https://istio.io/docs/guides/telemetry.html
+
+#TODO: https://istio.io/docs/tasks/
+
+
+
+
+
